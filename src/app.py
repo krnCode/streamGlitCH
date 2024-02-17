@@ -9,20 +9,6 @@ img_list = []
 glitched_imgs = []
 file_ext = [".jpg", ".jpeg", ".png", ".gif"]
 
-st.title(body="streamGlitCH")
-
-st.markdown(
-    """
-        Welcome to streamGlitCH, the image glich generator!
-            
-        Just upload your files in the left sidebar, select the glitch effects and the click the "Glitch" button.
-            
-        The images will be shown after the effects got applied. 
-    """
-)
-
-st.markdown("---")
-
 
 def image_glitch():
     for img in img_list:
@@ -72,4 +58,18 @@ if uploaded_images:
 
 
 else:
+    st.title(body="streamGlitCH")
+
+    st.markdown(
+        """
+            Welcome to streamGlitCH, the image glich generator!
+                
+            Just upload your files in the left sidebar, select the glitch effects and the click the "Glitch" button.
+                
+            The images will be shown after the effects got applied. 
+        """
+    )
+
+    st.markdown("---")
+
     st.write("Waiting for images...")
