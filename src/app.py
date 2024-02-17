@@ -4,7 +4,6 @@ from PIL import Image, ImageOps
 
 st.set_page_config(page_title="streamGlitCH", layout="wide")
 
-
 glitcher = ImageGlitcher()
 img_list = []
 glitched_imgs = []
@@ -14,12 +13,12 @@ st.title(body="streamGlitCH")
 
 st.markdown(
     """
-            Welcome to streamGlitCH, the image glich generator!
+        Welcome to streamGlitCH, the image glich generator!
             
-            Just upload your files in the left sidebar, select the glitch effects and the click the "Glitch" button.
+        Just upload your files in the left sidebar, select the glitch effects and the click the "Glitch" button.
             
-            The images will be shown after the effects got applied. 
-            """
+        The images will be shown after the effects got applied. 
+    """
 )
 
 st.markdown("---")
