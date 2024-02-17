@@ -14,17 +14,21 @@ with st.sidebar:
     )
 
     if uploaded_images:
-        # Include glitcher config
-        pass
+        st.markdown("---")
+        st.write("Use the settings bellow to glith your images:")
 
     else:
         st.write("Please upload your images above.")
 
 if uploaded_images:
-    for img in uploaded_images:
-        img = Image.open(img)
-        img = ImageOps.exif_transpose(img)
-        st.image(image=img)
+    with st.expander(label="Uploaded Images:"):
+        img_list = []
+        for img in uploaded_images:
+            img = Image.open(img)
+            img = ImageOps.exif_transpose(img)
+            img_list.append(img)
+
+        st.image(image=img_list, width=200)
 
 else:
     st.write("Waiting for images...")
