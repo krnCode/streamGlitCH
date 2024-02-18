@@ -22,7 +22,11 @@ with st.sidebar:
         st.markdown("---")
         st.write("Use the settings below to glitch your images:")
 
-        glitch_amount = st.slider(label="Glitch Amount", min_value=0.1, max_value=10.0)
+        glitch_amount = st.slider(
+            label="Glitch Amount",
+            min_value=0.1,
+            max_value=10.0,
+        )
         color_offset = st.toggle(label="Color Offset", value=True)
         scan_lines = st.toggle(label="Scan Lines", value=False)
         seed = st.number_input(
