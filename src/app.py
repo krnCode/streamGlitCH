@@ -17,10 +17,11 @@ def image_glitch():
             glitch_amount=glitch_amount,
             color_offset=color_offset,
             scan_lines=scan_lines,
+            seed=seed,
         )
         glitched_imgs.append(glitched_img)
 
-    with st.expander(label="Glitched Images:", expanded=True):
+    with col2.expander(label="Glitched Images:", expanded=True):
         st.image(image=glitched_imgs, output_format="PNG")
 
 
@@ -34,11 +35,14 @@ with st.sidebar:
 
     if uploaded_images:
         st.markdown("---")
-        st.write("Use the settings bellow to glith your images:")
+        st.write("Use the settings below to glith your images:")
 
         glitch_amount = st.slider(label="Glitch Amount", min_value=0.1, max_value=10.0)
         color_offset = st.toggle(label="Color Offset", value=True)
         scan_lines = st.toggle(label="Scan Lines", value=False)
+        seed = st.number_input(
+            label="Insert seed here (leave empty for no seed)", value=None
+        )
         bt_img_glitch = st.button(
             label="Glitch",
             on_click=image_glitch,
@@ -48,7 +52,10 @@ with st.sidebar:
         st.write("Please upload your images above.")
 
 if uploaded_images:
-    with st.expander(label="Uploaded Images:", expanded=True):
+
+    col1, col2 = st.columns([1, 1])
+
+    with col1.expander(label="Uploaded Images:", expanded=True):
         for img in uploaded_images:
             img = Image.open(img)
             img = ImageOps.exif_transpose(img)
