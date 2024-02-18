@@ -10,21 +10,6 @@ glitched_imgs = []
 file_ext = [".jpg", ".jpeg", ".png", ".gif"]
 
 
-def image_glitch():
-    for img in img_list:
-        glitched_img = glitcher.glitch_image(
-            src_img=img,
-            glitch_amount=glitch_amount,
-            color_offset=color_offset,
-            scan_lines=scan_lines,
-            seed=seed,
-        )
-        glitched_imgs.append(glitched_img)
-
-    with col2.expander(label="Glitched Images:", expanded=True):
-        st.image(image=glitched_imgs, output_format="PNG")
-
-
 with st.sidebar:
     uploaded_images = st.file_uploader(
         label="Upload your images here",
@@ -35,17 +20,13 @@ with st.sidebar:
 
     if uploaded_images:
         st.markdown("---")
-        st.write("Use the settings below to glith your images:")
+        st.write("Use the settings below to glitch your images:")
 
         glitch_amount = st.slider(label="Glitch Amount", min_value=0.1, max_value=10.0)
         color_offset = st.toggle(label="Color Offset", value=True)
         scan_lines = st.toggle(label="Scan Lines", value=False)
         seed = st.number_input(
             label="Insert seed here (leave empty for no seed)", value=None
-        )
-        bt_img_glitch = st.button(
-            label="Glitch",
-            on_click=image_glitch,
         )
 
     else:
@@ -63,6 +44,17 @@ if uploaded_images:
 
         st.image(image=img_list, output_format="PNG")
 
+    with col2.expander(label="Glitched Images:", expanded=True):
+        for img in img_list:
+            glitched_img = glitcher.glitch_image(
+                src_img=img,
+                glitch_amount=glitch_amount,
+                color_offset=color_offset,
+                scan_lines=scan_lines,
+                seed=seed,
+            )
+            glitched_imgs.append(glitched_img)
+        st.image(image=glitched_imgs, output_format="PNG")
 
 else:
     st.title(body="streamGlitCH")
