@@ -67,9 +67,9 @@ else:
         """
             Welcome to streamGlitCH, the image glich generator!
                 
-            Just upload your files in the left sidebar, select the glitch effects and the click the "Glitch" button.
+            Just upload your files in the left sidebar, and change the settings to glitch the image.
                 
-            The images will be shown after the effects got applied. 
+            The images will be glitched as you change the settings. 
         """
     )
 
