@@ -28,7 +28,10 @@ with st.sidebar:
         st.write("Use the settings below to glitch your images:")
 
         selection = st.radio(
-            label="What are you going to make?", options=["Images", "GIFs"]
+            label="What are you going to make?",
+            options=["Images", "GIFs"],
+            horizontal=True,
+            help="All GIFs are in 640x360",
         )
 
         if selection == "Images":
