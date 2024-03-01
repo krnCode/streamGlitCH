@@ -16,8 +16,8 @@ glitched_gifs = []
 
 file_ext = [".jpg", ".jpeg", ".png", ".gif"]
 
-logo_path = Path(__file__).parents / "/res/img/"
-logo = logo_path + random.choice(os.listdir(logo_path))
+logo_path = str(Path("../res/img/"))
+logo = logo_path + "/" + random.choice(os.listdir(logo_path))
 
 
 with st.sidebar:
