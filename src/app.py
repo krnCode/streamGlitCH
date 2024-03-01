@@ -2,6 +2,7 @@ import streamlit as st
 from glitch_this import ImageGlitcher
 from PIL import Image, ImageOps, ImageSequence
 from io import BytesIO
+from pathlib import Path
 import base64
 import random
 import os
@@ -15,7 +16,7 @@ glitched_gifs = []
 
 file_ext = [".jpg", ".jpeg", ".png", ".gif"]
 
-logo_path = r"../res/img/"
+logo_path = Path(__file__).parents / "/res/img/"
 logo = logo_path + random.choice(os.listdir(logo_path))
 
 
