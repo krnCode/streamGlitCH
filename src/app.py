@@ -27,19 +27,6 @@ current_path = Path(__file__).parent.parent
 img_path = current_path / "res" / "img"
 image_files = os.listdir(img_path)
 
-if not image_files:
-    st.write("No images found in directory.")
-else:
-    # Randomly select an image file
-    logo = img_path / random.choice(image_files)
-
-    # Check if the file exists and is a file
-    if logo.is_file():
-        st.image(image=str(logo))
-        print(logo)
-    else:
-        st.write(f"File {logo} not found.")
-
 
 with st.sidebar:
     uploaded_images = st.file_uploader(
@@ -182,6 +169,20 @@ if uploaded_images:
         #         )
 
 else:
+    if not image_files:
+        st.write("No images found in directory.")
+
+    else:
+        # Randomly select an image file
+        logo = img_path / random.choice(image_files)
+
+        # Check if the file exists and is a file
+        if logo.is_file():
+            st.image(image=str(logo))
+            print(logo)
+        else:
+            st.write(f"File {logo} not found.")
+
     st.title(body="streamGlitCH")
 
     st.markdown(
