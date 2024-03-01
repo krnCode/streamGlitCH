@@ -16,8 +16,29 @@ glitched_gifs = []
 
 file_ext = [".jpg", ".jpeg", ".png", ".gif"]
 
-logo_path = str(Path("../res/img/"))
-logo = logo_path + "/" + random.choice(os.listdir(logo_path))
+# current_path = Path(__file__).parent
+# img_path = current_path.parent / "res" / "img"
+# logo = img_path / random.choice(os.listdir(str(img_path)))
+# print(img_path)
+# show_logo = st.image(image=str(logo))
+
+
+current_path = Path(__file__).parent.parent
+img_path = current_path / "res" / "img"
+image_files = os.listdir(img_path)
+
+if not image_files:
+    st.write("No images found in directory.")
+else:
+    # Randomly select an image file
+    logo = img_path / random.choice(image_files)
+
+    # Check if the file exists and is a file
+    if logo.is_file():
+        st.image(image=str(logo))
+        print(logo)
+    else:
+        st.write(f"File {logo} not found.")
 
 
 with st.sidebar:
@@ -161,7 +182,6 @@ if uploaded_images:
         #         )
 
 else:
-    st.image(image=logo)
     st.title(body="streamGlitCH")
 
     st.markdown(
