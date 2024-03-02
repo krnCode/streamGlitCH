@@ -16,13 +16,6 @@ glitched_gifs = []
 
 file_ext = [".jpg", ".jpeg", ".png", ".gif"]
 
-# current_path = Path(__file__).parent
-# img_path = current_path.parent / "res" / "img"
-# logo = img_path / random.choice(os.listdir(str(img_path)))
-# print(img_path)
-# show_logo = st.image(image=str(logo))
-
-
 current_path = Path(__file__).parent.parent
 img_path = current_path / "res" / "img"
 image_files = os.listdir(img_path)
@@ -76,7 +69,7 @@ with st.sidebar:
             height = st.number_input(
                 label="Height of the gif", min_value=1, value=360, help="Defalt: 360"
             )
-            frames = st.number_input(
+            num_frames = st.number_input(
                 label="Insert number of frames here", min_value=2, max_value=1000
             )
             duration = st.number_input(
@@ -119,64 +112,58 @@ if uploaded_images:
             st.image(image=glitched_imgs, output_format="PNG")
 
     else:
-        st.write("Under construction...")
-        # col1, col2 = st.columns([1, 1])
+        # st.write("Under construction...")
+        col1, col2 = st.columns([1, 1])
 
-        # with col1.expander(label="Uploaded Images:", expanded=True):
-        #     for img in uploaded_images:
-        #         img = Image.open(img)
-        #         img = ImageOps.exif_transpose(img)
-        #         img_list.append(img)
+        with col1.expander(label="Uploaded Images:", expanded=True):
+            for img in uploaded_images:
+                img = Image.open(img)
+                img = ImageOps.exif_transpose(img)
+                img_list.append(img)
 
-        #     st.image(image=img_list, output_format="auto")
+            st.image(image=img_list, output_format="auto")
 
-        # with col2.expander(label="Glitched GIFs:", expanded=True):
-        #     for img in img_list:
-        #         glitched_gif = glitcher_img.glitch_image(
-        #             src_img=img,
-        #             glitch_amount=glitch_amount,
-        #             seed=seed,
-        #             color_offset=color_offset,
-        #             scan_lines=scan_lines,
-        #             gif=True,
-        #             frames=frames,
-        #         )
+        with col2.expander(label="Glitched GIFs:", expanded=True):
+            for img in img_list:
+                frames = []
 
-        #         resized_glitched_gif = [
-        #             frame.resize((width, height)) for frame in glitched_gif
-        #         ]
+                for i in range(num_frames):
+                    glitched_img = glitcher_img.glitch_image(
+                        src_img=img,
+                        glitch_amount=glitch_amount,
+                        seed=seed,
+                        color_offset=color_offset,
+                        scan_lines=scan_lines,
+                        gif=False,
+                    )
 
-        #         with BytesIO() as bIO:
-        #             resized_glitched_gif[0].save(
-        #                 bIO,
-        #                 format="GIF",
-        #                 append_images=resized_glitched_gif[1:],
-        #                 save_all=True,
-        #                 duration=duration,
-        #                 loop=loop,
-        #             )
-        #             glitched_gif_bytes = bIO.getvalue()
+                    frames.append(glitched_img.resize((width, height)))
 
-        #         # glitched_gifs.append(glitched_gif_bytes)
+                with BytesIO() as bIO:
+                    frames[0].save(
+                        bIO,
+                        format="GIF",
+                        append_images=frames[1:],
+                        save_all=True,
+                        duration=duration,
+                        loop=loop,
+                    )
+                    glitched_gif_bytes = bIO.getvalue()
 
-        #         b64 = base64.b64encode(glitched_gif_bytes).decode()
+                b64 = base64.b64encode(glitched_gif_bytes).decode()
 
-        #         # st.write(glitched_gifs)
-        #         # st.image(image=glitched_imgs, channels="RGB", output_format="GIF")
-        #         st.markdown(
-        #             f"![Glitched GIF](data:image/gif;base64,{b64})",
-        #             unsafe_allow_html=True,
-        #         )
+                st.markdown(
+                    f"![Glitched GIF](data:image/gif;base64,{b64})",
+                    unsafe_allow_html=True,
+                )
 
 else:
     if not image_files:
         st.write("No images found in directory.")
 
     else:
-        # Randomly select an image file
         logo = img_path / random.choice(image_files)
 
-        # Check if the file exists and is a file
         if logo.is_file():
             st.image(image=str(logo))
             print(logo)
