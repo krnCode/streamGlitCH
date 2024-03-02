@@ -112,7 +112,6 @@ if uploaded_images:
             st.image(image=glitched_imgs, output_format="PNG")
 
     else:
-        # st.write("Under construction...")
         col1, col2 = st.columns([1, 1])
 
         with col1.expander(label="Uploaded Images:", expanded=True):
