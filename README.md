@@ -28,3 +28,6 @@ streamGlitCH is an image glitch generator built with Streamlit and the Glitch Th
 A big thank you to the creators of Glitch This and the Streamlit team for their amazing work. This project wouldn’t have been possible without their contributions to the open-source community.
 
 Enjoy glitching your images with streamGlitCH!
+
+
+[![ko-fi](https://ko-fi.com/img/githubbutton_sm.svg)](https://ko-fi.com/B0B3V8QAU)
