@@ -28,12 +28,6 @@ with st.sidebar:
         label_visibility="hidden",
         accept_multiple_files=True,
     )
-    
-    st.markdown("---")
-
-    st.markdown(
-        "[![ko-fi](https://ko-fi.com/img/githubbutton_sm.svg)](https://ko-fi.com/B0B3V8QAU)"
-    )
 
     if uploaded_images:
         st.markdown("---")
@@ -190,3 +184,11 @@ else:
     st.markdown("---")
 
     st.write("Waiting for images...")
+
+
+with st.sidebar:
+    st.markdown("---")
+
+    st.markdown(
+        "[![ko-fi](https://ko-fi.com/img/githubbutton_sm.svg)](https://ko-fi.com/B0B3V8QAU)"
+    )
