@@ -14,7 +14,7 @@ importlib-metadata==7.0.1
 Jinja2==3.1.6
 jsonschema==4.21.1
 jsonschema-specifications==2023.12.1
-markdown-it-py==3.0.0
+markdown-it-py==4.2.0
 MarkupSafe==2.1.5
 mdurl==0.1.2
 numpy==1.26.4
